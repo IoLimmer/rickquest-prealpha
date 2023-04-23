@@ -51,6 +51,5 @@ public class PlayerControllerGRID : MonoBehaviour
         }
 
         timeCounter += Time.deltaTime;
-        Debug.Log(timeCounter);
     }
 }
