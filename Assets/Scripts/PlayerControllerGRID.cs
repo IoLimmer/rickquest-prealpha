@@ -16,10 +16,28 @@ public class PlayerControllerGRID : MonoBehaviour
 
     }
 
+    Vector3 GetInput()
+    {
+        var curXmove = Input.GetAxisRaw("Horizontal");
+        var curYmove = Input.GetAxisRaw("Vertical");
+
+        if (Mathf.Abs(curYmove) > Mathf.Abs(curXmove)) //Give priority to x axis movement
+        {
+            curXmove = 0;
+        }
+        else
+        {
+            curYmove = 0;
+        }
+
+        return new Vector3(curXmove, curYmove, 0f);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        Vector3 change = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
+        Vector3 change = GetInput();
 
         if (canMove) {
             transform.Translate(change);
