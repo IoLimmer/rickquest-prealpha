@@ -41,6 +41,7 @@ public class PlayerControllerGRID : MonoBehaviour
             GetInput();
         }
 
+        //something was giving player position tiny z value. this is a hacky fix. but it works! it just works
         transform.position =  new Vector3(transform.position.x, transform.position.y, 0f);
     }
 }
