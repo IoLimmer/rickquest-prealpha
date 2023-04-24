@@ -22,40 +22,51 @@ public class PlayerFollowerManager : MonoBehaviour
 
     void InitFollowerPositions()
     {
-        switch (followerOriginDirection)
+        // spawn followers relative to player position. i.e. in certain director one unit over each time
+
+        for (int i = 1; i < followerCount+1; i++)
         {
-            case FollowerOriginDirection.Behind_player:
-                followerTargets.Add(playerOrigin + new Vector3(0f, 1f, 0f));
-                break;
+            switch (followerOriginDirection)
+            {
 
-            case FollowerOriginDirection.In_front_of_player:
-                followerTargets.Add(playerOrigin + new Vector3(0f, -1f, 0f));
-                break;
+                case FollowerOriginDirection.Behind_player:
+                    followerTargets.Add(playerOrigin + new Vector3(0f, 1f, 0f) * i);
+                    break;
 
-            case FollowerOriginDirection.Left_of_player:
-                followerTargets.Add(playerOrigin + new Vector3(-1f, 0f, 0f));
-                break;
+                case FollowerOriginDirection.In_front_of_player:
+                    followerTargets.Add(playerOrigin + new Vector3(0f, -1f, 0f) * i);
+                    break;
 
-            case FollowerOriginDirection.Right_of_player:
-                followerTargets.Add(playerOrigin + new Vector3(1f, 0f, 0f));
-                break;
+                case FollowerOriginDirection.Left_of_player:
+                    followerTargets.Add(playerOrigin + new Vector3(-1f, 0f, 0f) * i);
+                    break;
 
-            default:
-                Debug.LogError("Follower spawn location not defined!");
-                break;            
+                case FollowerOriginDirection.Right_of_player:
+                    followerTargets.Add(playerOrigin + new Vector3(1f, 0f, 0f) * i);
+                    break;
+
+                default:
+                    Debug.LogError("Follower spawn location not defined!");
+                    break;
+            }
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerOrigin += new Vector3(0.5f, 0.5f, 0f);
-        // player origin is written in by dev as 3 whole numbers. arbitrary adjustments to real grid position are added by code above
+        // player origin is written in by dev as 3 whole numbers. arbitrary adjustments to real grid position are added by code below
         // (it just seemed nicer that way)
+        playerOrigin += new Vector3(0.5f, 0.5f, 0f);
+
         InitFollowerPositions();
 
         GameObject.Instantiate(playerPrefab, playerOrigin, new Quaternion());
-        GameObject.Instantiate(followerPrefab, followerTargets[0], new Quaternion());
+
+        // now spawn however many followers we want
+        for (int i = 0; i < followerCount; i++){ 
+            GameObject.Instantiate(followerPrefab, followerTargets[i], new Quaternion());
+        }
     }
 
     // Update is called once per frame
