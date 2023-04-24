@@ -8,7 +8,6 @@ public class CaterpillarManager : MonoBehaviour
     private Vector3 playerOrigin;
     private Transform playerPoint;
 
-    [SerializeField] private List<GameObject> followers;
     [SerializeField] private GameObject followerPrefab;
     enum FollowerOriginDirection
     {
@@ -19,7 +18,9 @@ public class CaterpillarManager : MonoBehaviour
     };
 
     [SerializeField] private FollowerOriginDirection followerOriginDirection;
-    public List<Vector3> followerTargets;
+
+    [SerializeField] private int followerCount = 1;
+    [SerializeField] public List<Vector3> followerTargets;
 
     void InitFollowerPositions()
     {
@@ -27,7 +28,7 @@ public class CaterpillarManager : MonoBehaviour
 
         // spawn followers relative to player position. i.e. in certain direction one unit over each time
 
-        for (int i = 1; i < followers.Count + 1; i++)
+        for (int i = 1; i < followerCount+1; i++)
         {
             switch (followerOriginDirection)
             {
@@ -70,8 +71,8 @@ public class CaterpillarManager : MonoBehaviour
 
         // spawn however many followers we want
         InitFollowerPositions();
-        for (int i = 0; i < followers.Count; i++) { 
-            followers.Add(Instantiate(followerPrefab, followerTargets[i+1], new Quaternion()));
+        for (int i = 1; i < followerCount+1; i++) { 
+            GameObject.Instantiate(followerPrefab, followerTargets[i], new Quaternion());
         }
     }
 

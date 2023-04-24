@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 397231498}
   - component: {fileID: 397231497}
   m_Layer: 0
-  m_Name: Caterpillar Manager
+  m_Name: Player Follower Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,11 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1195374134}
-  followers:
-  - {fileID: 7813313314716335001, guid: e3dd9c76291a77f4683cc4c2f75156ce, type: 3}
-  - {fileID: 7813313314716335001, guid: e3dd9c76291a77f4683cc4c2f75156ce, type: 3}
-  - {fileID: 7813313314716335001, guid: e3dd9c76291a77f4683cc4c2f75156ce, type: 3}
+  followerPrefab: {fileID: 7813313314716335001, guid: e3dd9c76291a77f4683cc4c2f75156ce, type: 3}
   followerOriginDirection: 0
+  followerCount: 3
   followerTargets: []
 --- !u!4 &397231498
 Transform:
