@@ -21,13 +21,13 @@ public class PlayerControllerGRID : MonoBehaviour
         var curXmove = Input.GetAxisRaw("Horizontal");
         var curYmove = Input.GetAxisRaw("Vertical");
 
-        if (Mathf.Abs(curYmove) > Mathf.Abs(curXmove)) //Give priority to x axis movement
+        if (Mathf.Abs(curXmove) > Mathf.Abs(curYmove)) //Give priority to y axis movement
         {
-            curXmove = 0;
+            curYmove = 0;
         }
         else
         {
-            curYmove = 0;
+            curXmove = 0;
         }
 
         return new Vector3(curXmove, curYmove, 0f);
