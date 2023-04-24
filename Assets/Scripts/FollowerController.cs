@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FollowerController : MonoBehaviour
 {
+    private int positionInCaterpillar;
+
     // Start is called before the first frame update
     void Start()
     {

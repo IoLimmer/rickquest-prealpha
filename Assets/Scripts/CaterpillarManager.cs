@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFollowerManager : MonoBehaviour
+public class CaterpillarManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private Vector3 playerOrigin;
@@ -79,7 +79,6 @@ public class PlayerFollowerManager : MonoBehaviour
     List<Vector3> UpdateFollowerTargets(List<Vector3> oldFollowerTargets)
     {
         List<Vector3> newFollowerTargets = new List<Vector3>();
-        //Debug.Log(playerPoint.position);
 
         newFollowerTargets.Add(playerPoint.position);
         for (int i = 0; i < oldFollowerTargets.Count - 1; i++)
@@ -96,6 +95,5 @@ public class PlayerFollowerManager : MonoBehaviour
         {
             followerTargets = UpdateFollowerTargets(followerTargets);
         }
-        //Debug.Log(playerPoint.position);
     }
 }
