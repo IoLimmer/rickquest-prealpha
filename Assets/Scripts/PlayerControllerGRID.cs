@@ -4,52 +4,41 @@ using UnityEngine;
 
 public class PlayerControllerGRID : MonoBehaviour
 {
-    public float playerSpeed = 0.2f;
-
-    private float timeCounter = 0f;
-    private Vector3 change;
-    public bool canMove = true;
+    public float moveSpeed = 5f;
+    public Transform movePoint;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        movePoint = gameObject.transform.GetChild(0).transform;
+        movePoint.parent = null; //give it freedom baby
     }
 
-    Vector3 GetInput()
+    void GetInput()
     {
-        var curXmove = Input.GetAxisRaw("Horizontal");
-        var curYmove = Input.GetAxisRaw("Vertical");
+        var xInput = Input.GetAxisRaw("Horizontal");
+        var yInput = Input.GetAxisRaw("Vertical");
 
-        if (Mathf.Abs(curXmove) > Mathf.Abs(curYmove)) //Give priority to y axis movement
+        if (Mathf.Abs(xInput) > Mathf.Abs(yInput)) // only one axis at a time, gives priority to y axis
         {
-            curYmove = 0;
+            yInput = 0;
         }
         else
         {
-            curXmove = 0;
+            xInput = 0;
         }
 
-        return new Vector3(curXmove, curYmove, 0f);
+        movePoint.position += new Vector3(xInput, yInput, 0f);
     }
-
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 change = GetInput();
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
-        if (canMove) {
-            transform.Translate(change);
-            canMove = false;
-        }
-
-        if (timeCounter > playerSpeed)
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
-            canMove = true;
-            timeCounter = 0f;
+            GetInput();
         }
-
-        timeCounter += Time.deltaTime;
     }
 }
