@@ -67,7 +67,7 @@ public class PlayerFollowerManager : MonoBehaviour
         playerOrigin = player.transform.position;
 
         // get player pointer
-        playerPoint = player.transform.GetChild(0).transform;
+        playerPoint = player.GetComponent<PlayerControllerGRID>().movePoint;
 
         // spawn however many followers we want
         InitFollowerPositions();
@@ -79,7 +79,7 @@ public class PlayerFollowerManager : MonoBehaviour
     List<Vector3> UpdateFollowerTargets(List<Vector3> oldFollowerTargets)
     {
         List<Vector3> newFollowerTargets = new List<Vector3>();
-        Debug.Log(playerPoint.position);
+        //Debug.Log(playerPoint.position);
 
         newFollowerTargets.Add(playerPoint.position);
         for (int i = 0; i < oldFollowerTargets.Count - 1; i++)
@@ -96,5 +96,6 @@ public class PlayerFollowerManager : MonoBehaviour
         {
             followerTargets = UpdateFollowerTargets(followerTargets);
         }
+        //Debug.Log(playerPoint.position);
     }
 }

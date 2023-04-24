@@ -40,5 +40,6 @@ public class PlayerControllerGRID : MonoBehaviour
         {
             GetInput();
         }
+        Debug.Log(movePoint.position - new Vector3(-0.5f, -0.5f, 0f));
     }
 }
