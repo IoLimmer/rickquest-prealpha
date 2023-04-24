@@ -74,7 +74,7 @@ public class PlayerFollowerManager : MonoBehaviour
     void Update()
     {
         playerOrigin = player.transform.position;
-        if (Vector3.Distance(playerOrigin, followerTargets[0]) >= 0.1f)
+        if (Vector3.Distance(playerOrigin, followerTargets[0]) >= 0.5f)
         {
             Debug.Log("Banana");
         }
