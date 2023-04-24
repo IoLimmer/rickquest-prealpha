@@ -6,6 +6,8 @@ public class PlayerFollowerManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private Vector3 playerOrigin;
+    private Transform playerPoint;
+
     [SerializeField] private GameObject followerPrefab;
     enum FollowerOriginDirection
     {
@@ -57,26 +59,42 @@ public class PlayerFollowerManager : MonoBehaviour
         }
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
         // get initial player position
         playerOrigin = player.transform.position;
 
+        // get player pointer
+        playerPoint = player.transform.GetChild(0).transform;
+
         // spawn however many followers we want
         InitFollowerPositions();
-        for (int i = 1; i < followerCount+1; i++){ 
+        for (int i = 1; i < followerCount+1; i++) { 
             GameObject.Instantiate(followerPrefab, followerTargets[i], new Quaternion());
         }
+    }
+
+    List<Vector3> UpdateFollowerTargets(List<Vector3> oldFollowerTargets)
+    {
+        List<Vector3> newFollowerTargets = new List<Vector3>();
+        Debug.Log(playerPoint.position);
+
+        newFollowerTargets.Add(playerPoint.position);
+        for (int i = 0; i < oldFollowerTargets.Count - 1; i++)
+        {
+            newFollowerTargets.Add(oldFollowerTargets[i]);
+        }
+        return newFollowerTargets;
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerOrigin = player.transform.position;
-        if (Vector3.Distance(playerOrigin, followerTargets[0]) >= 0.5f)
+        if (Vector3.Distance(playerPoint.position, followerTargets[0]) >= .95f)
         {
-            Debug.Log("Banana");
+            followerTargets = UpdateFollowerTargets(followerTargets);
         }
     }
 }
