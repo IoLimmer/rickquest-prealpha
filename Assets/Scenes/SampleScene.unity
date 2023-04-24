@@ -322,7 +322,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1225825506}
   - component: {fileID: 1225825505}
-  - component: {fileID: 1225825504}
   m_Layer: 0
   m_Name: Player Point
   m_TagString: Untagged
@@ -330,20 +329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1225825504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225825503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afd7aace173f13408caecbad1f41db3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 0.2
-  canMove: 1
 --- !u!212 &1225825505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -420,6 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1419938044}
+  - component: {fileID: 1419938045}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -444,6 +430,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1419938045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419938043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afd7aace173f13408caecbad1f41db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  movePoint: {fileID: 0}
 --- !u!1001 &2108910537
 PrefabInstance:
   m_ObjectHideFlags: 0
