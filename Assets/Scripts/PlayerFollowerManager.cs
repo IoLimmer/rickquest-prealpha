@@ -30,19 +30,22 @@ public class PlayerFollowerManager : MonoBehaviour
         {
             switch (followerOriginDirection)
             {
-
+                // spawn followers behind player
                 case FollowerOriginDirection.Behind_player:
                     followerTargets.Add(playerOrigin + new Vector3(0f, 1f, 0f) * i);
                     break;
 
+                // spawn followers in front of player
                 case FollowerOriginDirection.In_front_of_player:
                     followerTargets.Add(playerOrigin + new Vector3(0f, -1f, 0f) * i);
                     break;
 
+                // spawn followers to the left of the player
                 case FollowerOriginDirection.Left_of_player:
                     followerTargets.Add(playerOrigin + new Vector3(-1f, 0f, 0f) * i);
                     break;
 
+                // spawn followers to the right of the player
                 case FollowerOriginDirection.Right_of_player:
                     followerTargets.Add(playerOrigin + new Vector3(1f, 0f, 0f) * i);
                     break;
@@ -57,10 +60,11 @@ public class PlayerFollowerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // get initial player position
         playerOrigin = player.transform.position;
-        InitFollowerPositions();
 
-        // now spawn however many followers we want
+        // spawn however many followers we want
+        InitFollowerPositions();
         for (int i = 1; i < followerCount+1; i++){ 
             GameObject.Instantiate(followerPrefab, followerTargets[i], new Quaternion());
         }
