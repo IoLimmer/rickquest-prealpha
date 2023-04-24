@@ -40,5 +40,7 @@ public class PlayerControllerGRID : MonoBehaviour
         {
             GetInput();
         }
+
+        transform.position =  new Vector3(transform.position.x, transform.position.y, 0f);
     }
 }

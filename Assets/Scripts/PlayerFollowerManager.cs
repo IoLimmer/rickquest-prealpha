@@ -22,6 +22,8 @@ public class PlayerFollowerManager : MonoBehaviour
 
     void InitFollowerPositions()
     {
+        followerTargets.Add(playerOrigin);
+
         // spawn followers relative to player position. i.e. in certain direction one unit over each time
 
         for (int i = 1; i < followerCount+1; i++)
@@ -59,7 +61,7 @@ public class PlayerFollowerManager : MonoBehaviour
         InitFollowerPositions();
 
         // now spawn however many followers we want
-        for (int i = 0; i < followerCount; i++){ 
+        for (int i = 1; i < followerCount+1; i++){ 
             GameObject.Instantiate(followerPrefab, followerTargets[i], new Quaternion());
         }
     }
@@ -67,6 +69,10 @@ public class PlayerFollowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        playerOrigin = player.transform.position;
+        if (Vector3.Distance(playerOrigin, followerTargets[0]) >= 0.1f)
+        {
+            Debug.Log("Banana");
+        }
     }
 }
