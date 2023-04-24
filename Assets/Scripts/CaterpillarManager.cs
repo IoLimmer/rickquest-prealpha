@@ -74,17 +74,15 @@ public class CaterpillarManager : MonoBehaviour
             followers[i].transform.position = followerTargets[i+1];
         }
     }
-
-    List<Vector3> UpdateFollowerTargets(List<Vector3> oldFollowerTargets)
+ 
+    void UpdateFollowerTargets()
     {
-        List<Vector3> newFollowerTargets = new List<Vector3>();
-
-        newFollowerTargets.Add(playerPoint.position);
-        for (int i = 0; i < oldFollowerTargets.Count - 1; i++)
+        for (int i = followerTargets.Count - 1; i > 0; i--)
         {
-            newFollowerTargets.Add(oldFollowerTargets[i]);
+            followerTargets[i] = followerTargets[i-1];
         }
-        return newFollowerTargets;
+
+        followerTargets[0] = playerPoint.position;
     }
 
     // Update is called once per frame
@@ -92,7 +90,7 @@ public class CaterpillarManager : MonoBehaviour
     {
         if (Vector3.Distance(playerPoint.position, followerTargets[0]) >= .95f)
         {
-            followerTargets = UpdateFollowerTargets(followerTargets);
+            UpdateFollowerTargets();
         }
     }
 }
