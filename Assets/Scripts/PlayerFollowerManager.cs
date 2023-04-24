@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerFollowerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject player;
+    private Vector3 playerOrigin;
     [SerializeField] private GameObject followerPrefab;
-    [SerializeField] private Vector3 playerOrigin;
     enum FollowerOriginDirection
     {
         Behind_player,
@@ -22,7 +22,7 @@ public class PlayerFollowerManager : MonoBehaviour
 
     void InitFollowerPositions()
     {
-        // spawn followers relative to player position. i.e. in certain director one unit over each time
+        // spawn followers relative to player position. i.e. in certain direction one unit over each time
 
         for (int i = 1; i < followerCount+1; i++)
         {
@@ -46,7 +46,7 @@ public class PlayerFollowerManager : MonoBehaviour
                     break;
 
                 default:
-                    Debug.LogError("Follower spawn location not defined!");
+                    Debug.LogError("Follower spawn location not defined");
                     break;
             }
         }
@@ -55,13 +55,8 @@ public class PlayerFollowerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // player origin is written in by dev as 3 whole numbers. arbitrary adjustments to real grid position are added by code below
-        // (it just seemed nicer that way)
-        playerOrigin += new Vector3(0.5f, 0.5f, 0f);
-
+        playerOrigin = player.transform.position;
         InitFollowerPositions();
-
-        GameObject.Instantiate(playerPrefab, playerOrigin, new Quaternion());
 
         // now spawn however many followers we want
         for (int i = 0; i < followerCount; i++){ 

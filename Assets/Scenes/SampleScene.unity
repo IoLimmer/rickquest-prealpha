@@ -156,7 +156,7 @@ MonoBehaviour:
   followerPrefab: {fileID: 7813313314716335001, guid: e3dd9c76291a77f4683cc4c2f75156ce, type: 3}
   playerOrigin: {x: 15, y: -12, z: 0}
   followerOriginDirection: 3
-  followerCount: 1
+  followerCount: 3
   followerTargets: []
 --- !u!4 &397231498
 Transform:
